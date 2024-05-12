@@ -1,28 +1,27 @@
-#include<stdio.h>
-#include<Windows.h>
+#include <tchar.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "windows.h"
 
-void 通用_输出调试信息(const char* pszFormat, ...)
+
+
+int main()
 {
-	char szbufFormat[0x1000];
-	char szbufFormat_Game[0x1100] = "";
-	va_list argList;
-	va_start(argList, pszFormat);
-	vsprintf_s(szbufFormat, pszFormat, argList);
-	strcat_s(szbufFormat_Game, "FPS ");// 加上输出头特征
-	strcat_s(szbufFormat_Game, szbufFormat);
-	OutputDebugStringA(szbufFormat_Game);// 编码转换
-	va_end(argList);
-}
-int main() {
+	UINT64 glDisablebase = 0x161523;
+	unsigned char lpBuffer2[100];
+	memcpy(lpBuffer2, &glDisablebase, sizeof(glDisablebase));
 
-	通用_输出调试信息("DEBUG: %s", "Hello, World!");
-	
-
-	const wchar_t* message = L"Hello, Debugger!1";
-	OutputDebugStringW(message);
+	for (int i = 0; i < sizeof(glDisablebase); i++)
+	{
+		printf("%x ", lpBuffer2[i]);
+	}
+	printf("\n");
+	unsigned char lpBuffer[] = { 0xc6,0x45,0x48,1,lpBuffer2[2] };
+	for (int i = 0; i < sizeof(lpBuffer); i++)
+	{
+		printf("%x ", lpBuffer[i]);
+	}
 
 	system("pause");
-
-
 	return 0;
 }
