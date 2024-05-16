@@ -1,4 +1,6 @@
 #include <ntddk.h>
+#include <Ntifs.h>
+
 #define FILE_PATH L"\\??\\C:\\1.txt"
 
 
@@ -13,7 +15,7 @@ NTSTATUS OpenFile() {
     IO_STATUS_BLOCK ioStatus;
     NTSTATUS status;
 
-    status = ZwCreateFile(&fileHandle,
+    status = ZwCreateFile(&fileHandle,         //也可以用ZwOpenFile打开
         GENERIC_WRITE | GENERIC_READ,
         &fileAttributes,
         &ioStatus,//指向 IO_STATUS_BLOCK 结构的指针，用于接收操作的结果信息
@@ -73,7 +75,35 @@ NTSTATUS ReadFromFile() {
     return status;
 }
 VOID CloseFile() {
-    ZwClose(fileHandle);
+    ZwClose(fileHandle);  //在内核态未关闭句柄会导致3环无法打开和删除       
+}
+VOID DeleteFile() {
+    UNICODE_STRING filePath;
+    OBJECT_ATTRIBUTES fileAttributes;
+    RtlInitUnicodeString(&filePath, FILE_PATH);
+    InitializeObjectAttributes(&fileAttributes, &filePath, OBJ_CASE_INSENSITIVE, NULL, NULL);
+    
+    ZwDeleteFile(&fileAttributes);
+
+}
+
+VOID Query() { //查询文件信息
+
+    IO_STATUS_BLOCK ioStatus; 
+    FILE_STANDARD_INFORMATION fbi = { 0 };//保存查询的结果
+    ZwQueryInformationFile(fileHandle, &ioStatus, &fbi, sizeof(FILE_STANDARD_INFORMATION), FileStandardInformation);
+
+
+    PVOID filebuffer = NULL;
+    filebuffer = ExAllocatePool(NonPagedPool, fbi.EndOfFile.QuadPart);
+
+    RtlZeroMemory(filebuffer, fbi.EndOfFile.QuadPart);
+    LARGE_INTEGER readoffset = { 0 };//可选参数，指定从文件中的哪个位置开始读取数据。
+    readoffset.QuadPart = 0;
+
+    ZwReadFile(fileHandle, NULL, NULL, NULL, &ioStatus, filebuffer, fbi.EndOfFile.QuadPart, &readoffset, NULL);
+    DbgPrintEx(77, 0, "IoIfo(实际读到的字节数):%d\n", ioStatus.Information);
+
 }
 
 
@@ -105,8 +135,8 @@ extern "C" NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg) {
     }
 
     CloseFile();
-
-
+   
+ 
     return 0;
 
 }

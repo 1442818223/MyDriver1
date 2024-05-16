@@ -12,7 +12,7 @@ VOID UnloadDriver(PDRIVER_OBJECT Pdriver) {
 extern "C" NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg) {
     pDriver->DriverUnload = UnloadDriver;
 
-        NTSTATUS status;
+    NTSTATUS status;
     UNICODE_STRING registryPath;
     OBJECT_ATTRIBUTES objectAttributes;
     HANDLE registryKey;
@@ -24,9 +24,10 @@ extern "C" NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg) {
 
     // 初始化注册表路径
     RtlInitUnicodeString(&registryPath, REGISTRY_PATH);
-    // 初始化对象属性                                              大小写不敏感
+    // 初始化对象属性                                              大小写不敏感               参数5为out判断是否打开成功
     InitializeObjectAttributes(&objectAttributes, &registryPath, OBJ_CASE_INSENSITIVE, NULL, NULL);
-    // 创建或打开注册表键
+
+    // 创建或打开注册表键           也可以用ZwOpenKey打开注册表
     status = ZwCreateKey(&registryKey,//指向用于接收创建的键的句柄的指针。
         KEY_ALL_ACCESS, //指定对新创建的键的访问权限。
         &objectAttributes,//指向 OBJECT_ATTRIBUTES 结构的指针，其中包含有关键的对象属性，例如键名、对象名和安全描述符等。
@@ -37,24 +38,24 @@ extern "C" NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg) {
         return status;
     }
 
-/*
-写注册表项
-*/
+    /*
+    写注册表项
+    */
     // 初始化值名称
     RtlInitUnicodeString(&valueName, VALUE_NAME);
     // 设置整数值数据
     valueData = VALUE_DATA;
-    // 写入整数值到注册表
+    // 写入整数值到注册表      RtlWriteRegistryValue也可以写注册表
     status = ZwSetValueKey(registryKey, &valueName, 0, REG_DWORD, &valueData, sizeof(valueData));
     if (NT_SUCCESS(status))
     {
         DbgPrintEx(77, 0, "set successfully!\n");
     }
 
-/*
-读注册表项
-*/
-// 初次查询获取储存所需的缓冲区大小
+    /*
+    读注册表项
+    */
+    // 初次查询获取储存所需的缓冲区大小
     status = ZwQueryValueKey(registryKey,//注册表键的句柄
         &valueName, //注册表值的名称
         KeyValuePartialInformation, //要查询的信息类别,此处为:查询指定值的部分信息
@@ -92,10 +93,10 @@ extern "C" NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg) {
         }
     }
 
-/*
-删注册表项
-*/
-    status = ZwDeleteKey(registryKey);
+    /*
+    删注册表项
+    */
+    status = ZwDeleteKey(registryKey);      //有子项的先要删除子项
     if (NT_SUCCESS(status))
     {
         DbgPrintEx(77, 0, "Handle deleted!\n");
@@ -108,6 +109,15 @@ extern "C" NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg) {
     if (NT_SUCCESS(status))
     {
         DbgPrintEx(77, 0, "Handle closed!\n");
+    }
+
+    //查找注册表的某一项是否存在 RTL_REGISTRY_SERVICES代表:Registry\Machine\System\CurrentControlSet\Services
+    status = RtlCheckRegistryKey(RTL_REGISTRY_SERVICES, L"123456"); 
+    if (NT_SUCCESS(status)) {
+        DbgPrintEx(77, 0, "不存在!\n");
+    }
+    else {
+        DbgPrintEx(77, 0, "存在!\n");
     }
 
     return 0;

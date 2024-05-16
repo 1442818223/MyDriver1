@@ -1,5 +1,6 @@
-#include <ntddk.h>
-//#include <ntifs.h>
+#include<ntifs.h>
+//#include <ntddk.h>
+#include<windef.h>
 
 // 定义设备名称
 #define _DEVICE_NAME L"\\device\\mydevice"
@@ -8,62 +9,105 @@
 // 定义 IOCTL 控制码
 #define CTL_TALK  CTL_CODE(FILE_DEVICE_UNKNOWN, 0x9000, METHOD_BUFFERED, FILE_ANY_ACCESS)
 
+typedef struct DATA
+{
+	HANDLE pid;//要读写的进程ID
+	unsigned __int64 address;//要读写的地址
+	DWORD size;//读写长度
+	PVOID data;//要读写的数据,  空指针 对应任何数据类型
+}Data, * PDATA;
+
+
+
 // 控制码处理函数
-NTSTATUS DispatchControl(PDEVICE_OBJECT pDevice, PIRP pIrp)
-{	// 获取 IRP 栈信息(上下文)
+NTSTATUS DispatchControl(PDEVICE_OBJECT pDevice, PIRP pIrp) {
 	PIO_STACK_LOCATION pStack = IoGetCurrentIrpStackLocation(pIrp);
 
 	if (pStack->MajorFunction == IRP_MJ_DEVICE_CONTROL) {
-		// 获取输入缓冲区指针
 		PVOID pBuff = pIrp->AssociatedIrp.SystemBuffer;
-		// 获取控制码                     //是哪个就拿哪个
 		ULONG CtlCode = pStack->Parameters.DeviceIoControl.IoControlCode;
-
-		//拿输入长度
-		//int size = pStack->Parameters.DeviceIoControl.InputBufferLength;     
+		int inputbufferlength = pStack->Parameters.DeviceIoControl.InputBufferLength; 
 		int outputbufferlength = pStack->Parameters.DeviceIoControl.OutputBufferLength;
-		// 用于记录数据长度
-		ULONG uLen = { 0 };
 
-		// 获取数据长度
-		uLen = strlen((const char*)pBuff);
+		NTSTATUS status = STATUS_SUCCESS;
+		PEPROCESS process = NULL;
+		KAPC_STATE apcstate = { 0 };
+		PMDL mdl = NULL;
+		PVOID mappedAddr = NULL;
 
-		// 根据控制码进行不同操作
-		switch (CtlCode)
-		{
-		case CTL_TALK:
-		{
-			// 输出接收到的数据长度
-			DbgPrintEx(77, 0, "长度:%d", uLen);
-			// 输出接收到的数据
-			DbgPrintEx(77, 0, "接收到的数据为:%s", pBuff);
-			KdPrintEx((77, 0, "[db]:%s\r\n", pBuff));    //KdPrintEx这个打印函数的好处自动识别是否为dbg模式
-
-			//发送数据到3环
-			int y = 500;
-			memcpy(pIrp->AssociatedIrp.SystemBuffer, &y, 4);
+	
+		
+		switch (CtlCode) {
+		case CTL_TALK: {
+			PDATA data = (PDATA)pBuff;
+			DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "inputbufferlength: %d,outputbufferlength: %d\n", inputbufferlength,outputbufferlength);
 			
-			pIrp->IoStatus.Information = outputbufferlength;
+			//获取进程对象
+			status = PsLookupProcessByProcessId(data->pid, &process);
+			if (!NT_SUCCESS(status)) {
+				DbgPrintEx(77,0,"Failed to get process object\n");
+				return status;
+			}
+
+			//附加进程
+			KeStackAttachProcess(process, &apcstate);  
+
+			__try {
+			     //MDL 是一种可以描述一组不连续物理内存页的结构，系统通过它来处理虚拟内存与物理内存之间的映射。
+                //分配内存描述符列表 (MDL)    
+				mdl = IoAllocateMdl((PVOID)data->address, data->size, FALSE, FALSE, NULL);
+				if (!mdl) {
+					status = STATUS_INSUFFICIENT_RESOURCES;
+					__leave; // 立即退出 __try 块
+				}
+
+				//以确保内存被锁定并且不会被操作系统换出到磁盘
+				MmProbeAndLockPages(mdl, KernelMode, IoReadAccess);
 
 
-		}
-		default:
+				//这个宏在成功时返回一个虚拟地址，该地址可以在内核模式下使用，用以访问缓冲区的内容。
+				// 在无法映射或锁定页面的时候，它会返回NULL。
+				//// 获取系统地址
+				mappedAddr = MmGetSystemAddressForMdlSafe(mdl, NormalPagePriority);
+				if (!mappedAddr) {
+					status = STATUS_INSUFFICIENT_RESOURCES; 
+					__leave;
+				}
+
+				
+
+				RtlCopyMemory(pIrp->AssociatedIrp.SystemBuffer, mappedAddr, data->size);
+				pIrp->IoStatus.Information = data->size;
+
+			}
+			__except (EXCEPTION_EXECUTE_HANDLER) {
+				status = GetExceptionCode();
+			}
+
+			if (mdl) {
+				MmUnlockPages(mdl);
+				IoFreeMdl(mdl);
+			}
+
+			KeUnstackDetachProcess(&apcstate);
+
+			//让内核对象引用数-1
+			ObDereferenceObject(process);
 			break;
 		}
+		default:
+			DbgPrintEx(77, 0, "Invalid control code\n");
+			status = STATUS_INVALID_DEVICE_REQUEST;
+			break;
+		}
+
+		pIrp->IoStatus.Status = status;
+		IoCompleteRequest(pIrp, IO_NO_INCREMENT);
+		return status;
 	}
 
-	// 设置返回信息
-	
-	pIrp->IoStatus.Status = STATUS_SUCCESS;
-
-	// 完成 IRP 请求
-	IoCompleteRequest(pIrp, IO_NO_INCREMENT);
-
-	return STATUS_SUCCESS;
+	return STATUS_INVALID_DEVICE_REQUEST;
 }
-
-
-
 
 // 用IRP_MJ_READ的方式传递数据
 NTSTATUS ReadpatchControl(PDEVICE_OBJECT pDevice, PIRP pIrp)
@@ -91,10 +135,6 @@ NTSTATUS ReadpatchControl(PDEVICE_OBJECT pDevice, PIRP pIrp)
 
 	return STATUS_SUCCESS;
 }
-
-
-
-
 
 
 // 创建派遣函数
@@ -128,12 +168,12 @@ VOID  UnloadDriver(PDRIVER_OBJECT pDriver)
 	DbgPrintEx(77, 0, "卸载成功\n");
 
 	// 删除符号链接
-	if (pDriver->DeviceObject)
-	{
-		UNICODE_STRING uSymblicLinkname;
-		RtlInitUnicodeString(&uSymblicLinkname, _SYB_NAME);
-		IoDeleteSymbolicLink(&uSymblicLinkname);
-		// 删除设备对象
+	UNICODE_STRING uSymblicLinkname;
+	RtlInitUnicodeString(&uSymblicLinkname, _SYB_NAME);
+	IoDeleteSymbolicLink(&uSymblicLinkname);
+
+	// 删除设备对象
+	if (pDriver->DeviceObject) {
 		IoDeleteDevice(pDriver->DeviceObject);
 	}
 }
@@ -168,11 +208,8 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pRegpath)
 	// 设置 IRP 分发函数
 	pDriver->MajorFunction[IRP_MJ_CREATE] = DisPatchCreate;
 
-	//pDriver->MajorFunction[IRP_MJ_DEVICE_CONTROL] = DispatchControl;
-	pDriver->MajorFunction[IRP_MJ_READ] = ReadpatchControl;       //读 
-
-
-
+	pDriver->MajorFunction[IRP_MJ_DEVICE_CONTROL] = DispatchControl;
+	//pDriver->MajorFunction[IRP_MJ_READ] = ReadpatchControl;       //读 
 
 	return STATUS_SUCCESS;
 }

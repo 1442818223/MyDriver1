@@ -21,6 +21,7 @@ int main()
 	{
 		printf("%x ", lpBuffer[i]);
 	}
+	OutputDebugString(L"输出调DD试信息123\n");
 
 	system("pause");
 	return 0;
