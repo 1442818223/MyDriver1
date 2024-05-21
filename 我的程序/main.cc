@@ -1,8 +1,7 @@
 #include <tchar.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "windows.h"
-
+#include <windows.h>
 
 
 int main()
@@ -11,11 +10,14 @@ int main()
 	unsigned char lpBuffer2[100];
 	memcpy(lpBuffer2, &glDisablebase, sizeof(glDisablebase));
 
-	for (int i = 0; i < sizeof(glDisablebase); i++)
+	for (int i = 0; i < 3; i++)
 	{
 		printf("%x ", lpBuffer2[i]);
 	}
+	printf("0x%x ", *(UINT64*)lpBuffer2);
+	printf("0x%x ", *(unsigned char*)lpBuffer2);
 	printf("\n");
+
 	unsigned char lpBuffer[] = { 0xc6,0x45,0x48,1,lpBuffer2[2] };
 	for (int i = 0; i < sizeof(lpBuffer); i++)
 	{
