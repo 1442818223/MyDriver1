@@ -72,12 +72,12 @@ PVOID GetProcessMoudleBase(HANDLE hProcess, char* moduleName)
 	::CloseHandle(hProcess);
 	return NULL;
 }
-//通过函数名获取函数地址(要改成64位只需要将IMAGE_OPTIONAL_HEADER改成MAGE_OPTIONAL_HEADER64，并编译为64位):
+//通过函数名获取函数地址(要改成64位只需要将IMAGE_OPTIONAL_HEADER改成IMAGE_OPTIONAL_HEADER64，并编译为64位):
 UINT64 GetFunAddrByName32(HANDLE hProcess, char* ModName, char* FunName)
 {
 	HANDLE hMod;
 	PVOID BaseAddress = NULL;
-	IMAGE_DOS_HEADER dosheader;
+	IMAGE_DOS_HEADER dosheader;     
 	IMAGE_OPTIONAL_HEADER opthdr;//IMAGE_OPTIONAL_HEADER64
 	IMAGE_EXPORT_DIRECTORY exports;
 	USHORT index = 0;

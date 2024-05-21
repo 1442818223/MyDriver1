@@ -121,6 +121,27 @@ int main()
 		if (bResult) {
 			printf("阳光反向增加开启成功！\n");
 		}
+
+		//
+		//PlantsVsZombies.exe+5F8A9 - 83 46 58 FC           - add dword ptr [esi+58],-04
+		unsigned char lpBuffer4[] = { 0x83,0x46,0x58,0xfc };
+		SIZE_T nSize4 = sizeof(lpBuffer4);
+		bResult = WriteProcessCodeMemory(Hprocess, (LPVOID)(base + 0x5F8A9), lpBuffer4, nSize4);
+		if (bResult) {
+			printf("豌豆射速增加开启成功！\n");
+		}
+
+		//PlantsVsZombies.exe+12FCF0 - 83 46 40 00           - add dword ptr [esi+40],00
+		unsigned char lpBuffer5[] = { 0x83,0x46,0x40,0x00 };
+		SIZE_T nSize5 = sizeof(lpBuffer5);
+		bResult = WriteProcessCodeMemory(Hprocess, (LPVOID)(base + 0x12FCF0), lpBuffer5, nSize5);
+		if (bResult) {
+			printf("松果无敌开启成功！\n");
+		}
+
+
+
+
 	system("pause");
 
 }

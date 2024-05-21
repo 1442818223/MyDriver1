@@ -263,8 +263,10 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pRegpath)
 	KeInitializeTimer(&kerneltime);//初始化内核计时器对象
 	//当驱动程序想要发送一个高优先级的请求来执行代码时，它会使用 KeInitializeDpc 初始化一个 DPC 并将其排队。
 	KeInitializeDpc(&dpcobj, (PKDEFERRED_ROUTINE)DpcRoutine, NULL);//初始化的 DPC 对象
+	//KeInsertQueueDpc(&dpcobj, NULL, NULL);
+	
 	LARGE_INTEGER 	dpctime = { 0 };
-	dpctime.QuadPart = -10 * 1000 * 1000 * 2;
+	dpctime.QuadPart = -10 * 1000 * 1000 * 2;  //(-10*1000*1000=1s)
 	KeSetTimer(&kerneltime, dpctime, &dpcobj); //给DCP设置一个定时器 ,也可以单纯等待不设置DPC ,设置一次,只生效一次
 	//KeWaitForSingleObject(&kerneltime, Executive, KernelMode, FALSE, NULL);//设置kerneltime的等待会生效
 	DbgPrint("Dpe time has be worked\n");

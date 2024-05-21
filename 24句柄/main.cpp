@@ -90,15 +90,15 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pRegpath)
     memset(&oor, 0, sizeof(oor));
     memset(&oor, 0, sizeof(oor)); //初始化结构体变量
 
-    oor.ObjectType = PsProcessType;  //注册为进程对象注册回调
+    oor.ObjectType = PsProcessType;  /////////注册为进程对象注册回调/////////////////////////////////
     oor.Operations = OB_OPERATION_HANDLE_CREATE | OB_OPERATION_HANDLE_DUPLICATE; //句柄创建和注册
-    oor.PreOperation = ProtectProcess;
-    oor.PostOperation = NULL;
+    oor.PreOperation = ProtectProcess;  //前回调
+    oor.PostOperation = NULL;  //后回调
 
     ob.Version = ObGetFilterVersion();
     ob.OperationRegistrationCount = 1;  //就一个进程操作前回调
     ob.OperationRegistration = &oor;
-    ob.RegistrationContext = NULL;
+    ob.RegistrationContext = NULL;  //参数
     RtlInitUnicodeString(&ob.Altitude, L"321000");  //进程回调的高度(排名)
 
     //三:注册
