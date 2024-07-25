@@ -65,7 +65,11 @@ NTSTATUS MyNtOpenProcess(
     PCLIENT_ID ClientId
 ) {
     PNTOPENPROCESS tempCall = (PNTOPENPROCESS)JmpBridgePtr;
+<<<<<<< HEAD
     if (ClientId->UniqueProcess == (HANDLE)11304) {
+=======
+    if (ClientId->UniqueProcess == (HANDLE)11772) {
+>>>>>>> a87bc83018d3644a35b1069f5518e42006247a80
         return STATUS_UNSUCCESSFUL;
     }
     return tempCall(ProcessHandle, DesiredAccess, ObjectAttributes, ClientId);
