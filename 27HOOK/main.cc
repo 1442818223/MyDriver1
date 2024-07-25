@@ -2,11 +2,11 @@
 #include <windef.h>
 #include <intrin.h>
 
-bool writeToReadOnlyMemory(void* address, void* buffer, size_t size) {
+BOOLEAN writeToReadOnlyMemory(void* address, void* buffer, size_t size) {
     // 分配一个MDL
     PMDL Mdl = IoAllocateMdl(address, size, FALSE, FALSE, NULL);
     if (!Mdl)
-        return false;
+        return FALSE;
 
     // 锁定并且检查页面
     MmProbeAndLockPages(Mdl, KernelMode, IoReadAccess);
@@ -16,7 +16,7 @@ bool writeToReadOnlyMemory(void* address, void* buffer, size_t size) {
     if (!Mapping) {
         MmUnlockPages(Mdl);
         IoFreeMdl(Mdl);
-        return false;
+        return FALSE;
     }
 
     // 修改页面保护属性为可读写
@@ -32,7 +32,7 @@ bool writeToReadOnlyMemory(void* address, void* buffer, size_t size) {
     // 释放MDL
     IoFreeMdl(Mdl);
 
-    return true;
+    return TRUE;
 }
 
 
@@ -65,8 +65,13 @@ NTSTATUS MyNtOpenProcess(
     PCLIENT_ID ClientId
 ) {
     PNTOPENPROCESS tempCall = (PNTOPENPROCESS)JmpBridgePtr;
+
     if (ClientId->UniqueProcess == (HANDLE)11304) {
-        return STATUS_UNSUCCESSFUL;
+
+        if (ClientId->UniqueProcess == (HANDLE)11772) {
+
+            return STATUS_UNSUCCESSFUL;
+        }
     }
     return tempCall(ProcessHandle, DesiredAccess, ObjectAttributes, ClientId);
 }

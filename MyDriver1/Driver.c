@@ -27,7 +27,7 @@ VOID DriverUnload(PDRIVER_OBJECT DriverObject)
     // 注销自定义系统调用处理函数
     PsSetCreateProcessNotifyRoutineEx(MyCustomSystemCallHandler, TRUE);
 
-    DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "Driver unloaded\n");
+    DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "66666666666666666666666666666666666666666\n");
 }
 
 
@@ -35,7 +35,7 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 {
     DriverObject->DriverUnload = DriverUnload;
     UNREFERENCED_PARAMETER(RegistryPath);
-
+    DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "9999999999999999999999999999999999999\n");
     // 注册自定义系统调用处理函数
     NTSTATUS status = PsSetCreateProcessNotifyRoutineEx(MyCustomSystemCallHandler, FALSE);
     if (!NT_SUCCESS(status))

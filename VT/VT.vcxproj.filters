@@ -19,8 +19,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cc">
+    <ClCompile Include="DriverMain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="vmx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VMXTools.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VMXTools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VMXDefine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vmx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
