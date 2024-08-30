@@ -87,6 +87,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "27HOOK", "27HOOK\27HOOK.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "X64内嵌汇编", "X64内嵌汇编\X64内嵌汇编.vcxproj", "{991C2900-7AB8-462F-A0FA-208D2C35C28C}"
 EndProject
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e7949905f0b76f614f9e2bdbc3b6a8024134ce6c
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "28调用门", "28调用门\28调用门.vcxproj", "{77D68C0C-B586-4933-A19F-D054905A66BF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "测试", "测试\测试.vcxproj", "{DBB0A52A-D166-4717-9AA3-193B3BB4094F}"
@@ -103,6 +107,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "信号量", "main\main.vcxp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "互斥体", "互斥体\互斥体.vcxproj", "{CE7CC4F6-3D72-477C-A062-B265E025629F}"
 EndProject
+<<<<<<< HEAD
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "鼠标点击", "鼠标点击\鼠标点击.vcxproj", "{06A36474-366B-466A-AB2D-A9D0E0F5D447}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SEH", "SEH\SEH.vcxproj", "{D0DCDE26-1123-4FD8-B617-35FB975F4785}"
@@ -125,6 +130,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "给exe发送按键", "给ex
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VT", "VT\VT.vcxproj", "{D92FB1C3-628A-467A-90C8-116D832881BF}"
 EndProject
+=======
+=======
+>>>>>>> a87bc83018d3644a35b1069f5518e42006247a80
+>>>>>>> e7949905f0b76f614f9e2bdbc3b6a8024134ce6c
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -819,6 +828,10 @@ Global
 		{991C2900-7AB8-462F-A0FA-208D2C35C28C}.Release|x64.Build.0 = Release|x64
 		{991C2900-7AB8-462F-A0FA-208D2C35C28C}.Release|x86.ActiveCfg = Release|Win32
 		{991C2900-7AB8-462F-A0FA-208D2C35C28C}.Release|x86.Build.0 = Release|Win32
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> e7949905f0b76f614f9e2bdbc3b6a8024134ce6c
 		{77D68C0C-B586-4933-A19F-D054905A66BF}.Debug|ARM64.ActiveCfg = Debug|x64
 		{77D68C0C-B586-4933-A19F-D054905A66BF}.Debug|ARM64.Build.0 = Debug|x64
 		{77D68C0C-B586-4933-A19F-D054905A66BF}.Debug|x64.ActiveCfg = Debug|x64
@@ -927,6 +940,7 @@ Global
 		{CE7CC4F6-3D72-477C-A062-B265E025629F}.Release|x64.Build.0 = Release|x64
 		{CE7CC4F6-3D72-477C-A062-B265E025629F}.Release|x86.ActiveCfg = Release|Win32
 		{CE7CC4F6-3D72-477C-A062-B265E025629F}.Release|x86.Build.0 = Release|Win32
+<<<<<<< HEAD
 		{06A36474-366B-466A-AB2D-A9D0E0F5D447}.Debug|ARM64.ActiveCfg = Debug|x64
 		{06A36474-366B-466A-AB2D-A9D0E0F5D447}.Debug|ARM64.Build.0 = Debug|x64
 		{06A36474-366B-466A-AB2D-A9D0E0F5D447}.Debug|x64.ActiveCfg = Debug|x64
@@ -1083,6 +1097,10 @@ Global
 		{D92FB1C3-628A-467A-90C8-116D832881BF}.Release|x86.ActiveCfg = Release|x64
 		{D92FB1C3-628A-467A-90C8-116D832881BF}.Release|x86.Build.0 = Release|x64
 		{D92FB1C3-628A-467A-90C8-116D832881BF}.Release|x86.Deploy.0 = Release|x64
+=======
+=======
+>>>>>>> a87bc83018d3644a35b1069f5518e42006247a80
+>>>>>>> e7949905f0b76f614f9e2bdbc3b6a8024134ce6c
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
