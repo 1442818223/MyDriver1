@@ -41,11 +41,16 @@ VOID VmxStopVT(_In_ struct _KDPC *Dpc, _In_opt_ PVOID DeferredContext, _In_opt_ 
 
 VOID DriverUnload(PDRIVER_OBJECT pDriver)
 {
+	//DbgPrintEx(77, 0, "[db]:DriverUnLoad!\r\n");
+	KdPrintEx((77, 0, "[db]:DriverUnLoad!\r\n"));
 	KeGenericCallDpc(VmxStopVT, NULL);
 }
 
 NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg)
 {
+	//DbgPrintEx(77, 0, "[db]:DriverLoad!\r\n");
+	
+	KdPrintEx((77, 0, "[db]:DriverLoad!\r\n"));
 
 	KeGenericCallDpc(VmxStartVT, NULL);
 
