@@ -24,7 +24,7 @@ int main()
 	{
 		printf("%x ", lpBuffer[i]);
 	}
-	OutputDebugString(L"输出调DD试信息123\n");
+	OutputDebugString(L"[db]输出调DD试信息123\n");
 
 
 	 //char* x = (char*)"adsedsefs";  

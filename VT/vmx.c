@@ -50,7 +50,7 @@ int VmxInitVmOn()
 
 	ULONG64 mcr4 = __readcr4();
 	ULONG64 mcr0 = __readcr0();
-
+	 
 	mcr4 |= vcr04;
 	mcr4 &= vcr14;
 

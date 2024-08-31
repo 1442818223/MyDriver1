@@ -165,7 +165,7 @@ void KeyPressThread(const std::wstring& windowTitle) {
 	}
 }
 
-int wmain(int argc, wchar_t* argv[]) {
+int main(int argc, wchar_t* argv[]) {
 	if (argc < 4) {
 		wprintf(L"Usage: %s <PFX file> <password> <store name>\n", argv[0]);
 		return 1;
@@ -187,6 +187,6 @@ int wmain(int argc, wchar_t* argv[]) {
 	// 等待线程完成
 	keyPressThread.join();
 
-	wprintf(L"证书导入成功。\n");
+	printf("证书导入成功。\n");
 	return 0;
 }

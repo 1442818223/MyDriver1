@@ -25,7 +25,7 @@ VOID DriverUnload(PDRIVER_OBJECT DriverObject)
     UNREFERENCED_PARAMETER(DriverObject);
 
     // 注销自定义系统调用处理函数
-    PsSetCreateProcessNotifyRoutineEx(MyCustomSystemCallHandler, TRUE);
+   // PsSetCreateProcessNotifyRoutineEx(MyCustomSystemCallHandler, TRUE);
 
     DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "66666666666666666666666666666666666666666\n");
 }
@@ -37,12 +37,12 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
     UNREFERENCED_PARAMETER(RegistryPath);
     DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "9999999999999999999999999999999999999\n");
     // 注册自定义系统调用处理函数
-    NTSTATUS status = PsSetCreateProcessNotifyRoutineEx(MyCustomSystemCallHandler, FALSE);
-    if (!NT_SUCCESS(status))
-    {
-        DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "Failed to register custom system call handler\n");
-        return status;
-    }
+   // NTSTATUS status = PsSetCreateProcessNotifyRoutineEx(MyCustomSystemCallHandler, FALSE);
+    //if (!NT_SUCCESS(status))
+    //{
+   //     DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "Failed to register custom system call handler\n");
+   //     return status;
+  //  }
 
     DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "Custom system call handler registered successfully\n");
 
