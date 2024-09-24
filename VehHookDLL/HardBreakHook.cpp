@@ -21,7 +21,7 @@ void  HardBreakHook::setExceptionHandlingFunction(PVECTORED_EXCEPTION_HANDLER fu
 // 安装Hook
 void  HardBreakHook::hook()
 {
-	// 创建快照句柄，获取所有线程的快照
+	// 创建快照句柄，获取当前系统中所有线程的快照
 	HANDLE 快照句柄 = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
 	if (快照句柄 != INVALID_HANDLE_VALUE) {
 		THREADENTRY32 thread_entry32;

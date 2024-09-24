@@ -47,7 +47,7 @@ LONG NTAPI exceptionHandle(struct _EXCEPTION_POINTERS* context) {
             const char* str = "被hook了";
             *(char**)arg2Addr = (char*)str; // 设置参数2为新的字符串
             
-            //这种东西放里面也打印不出来
+            //这种东西放里面也打印不出来*********************************
             OutputDebugInfo("arg2Addr: 0x%08X, *(char**)arg2Addr: %s\n", arg2Addr, *(char**)arg2Addr);
 
 
