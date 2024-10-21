@@ -1,1 +1,1 @@
-Open source author: Qiang Zhang Chinese name: 张强
+Open source author: Qiang Zhang           Chinese name: 张强
