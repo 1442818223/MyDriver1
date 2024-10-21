@@ -55,10 +55,6 @@ int findInfFile(wchar_t* infFileName) {
 
 int main() {
 
-
-
-
-
 	SYSTEMTIME currentTime;
 	int year, month, day, hour, minute, second;
 	wchar_t infFileName[MAX_PATH];
