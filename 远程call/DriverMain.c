@@ -36,7 +36,7 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg)
 	};                                                          //ret
 	*(PULONG64)&code[12] = 0x7FFC4D3EA9D0;    //    MessageBoxA
 	 
-	//x32
+	//x32   放弃了
 	//char code[] =
 	//{  
  //     0x6A , 0x00 ,
