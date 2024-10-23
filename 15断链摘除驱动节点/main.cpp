@@ -122,10 +122,12 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg) {
     PLDR_DATA_TABLE_ENTRY next = (PLDR_DATA_TABLE_ENTRY)pre->InLoadOrderLinks.Flink;//下一个驱动的节点
   
     UNICODE_STRING driverName = { 0 };
-    RtlInitUnicodeString(&driverName, L"HTTP.sys");//获取名字
+   // RtlInitUnicodeString(&driverName, L"HTTP.sys");//获取名字
+    RtlInitUnicodeString(&driverName, L"hidetoolz.sys");//获取名字
 
     UNICODE_STRING driverName1 = { 0 };
-    RtlInitUnicodeString(&driverName1, L"\\driver\\HTTP");
+   // RtlInitUnicodeString(&driverName1, L"\\driver\\HTTP");
+    RtlInitUnicodeString(&driverName1, L"\\driver\\hidetoolz");
 	
     while (next != pre)//遍历一遍
     {
