@@ -3,6 +3,9 @@
 
 int main(int argc, char* argv[])
 {
+
+	MessageBoxA(NULL, NULL, NULL, NULL);
+	printf("Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€Õ€");
 	HMODULE hmodule = LoadLibraryA("user32.dll");
 	if (hmodule == NULL) {
 		printf("Failed to load user32.dll\n");

@@ -337,9 +337,9 @@ BOOLEAN RemoteCall(HANDLE pid, PVOID ShellCode, ULONG shellcodeSize)
 							41 56                                       push  r14                                                                  
 							41 57                                       push  r15                                                                  
 							48 B8 99 89 67 45 23 01 00 00               mov  rax,0x0000012345678999                                                
-							48 81 EC A8 00 00 00                        sub  rsp,0x00000000000000A8                                                
+							48 81 EC A8 00 00 00                        sub  rsp,0x00000000000000A0                                                
 							FF D0                                       call  rax                                                                  
-							48 81 C4 A8 00 00 00                        add  rsp,0x00000000000000A8                                                
+							48 81 C4 A8 00 00 00                        add  rsp,0x00000000000000A0                                                
 							41 5F                                       pop  r15                                                                   
 							41 5E                                       pop  r14                                                                   
 							41 5D                                       pop  r13                                                                   
@@ -384,9 +384,9 @@ BOOLEAN RemoteCall(HANDLE pid, PVOID ShellCode, ULONG shellcodeSize)
 					0x41, 0x56, 													//
 					0x41, 0x57, 													//
 					0x48, 0xB8, 0x99, 0x89, 0x67, 0x45, 0x23, 0x01, 0x00,0x00, 		// mov  rax,shellcode位置
-					0x48, 0x81, 0xEC, 0xA0, 0x00, 0x00, 0x00, 						// sub  rsp,0x00000000000000A8 
+					0x48, 0x81, 0xEC, 0xA0, 0x00, 0x00, 0x00, 						// sub  rsp,0x00000000000000A0 
 					0xFF, 0xD0, 													// call  rax  
-					0x48, 0x81, 0xC4, 0xA0, 0x00, 0x00, 0x00, 						//0xA0  Rsp对齐16字节(规定) add  rsp,0x00000000000000A8 
+					0x48, 0x81, 0xC4, 0xA0, 0x00, 0x00, 0x00, 						//add  rsp,0x00000000000000A0      //Rsp对齐16字节(规定) 
 					0x41, 0x5F, 													//
 					0x41, 0x5E,														//
 					0x41, 0x5D, 													//
@@ -400,10 +400,10 @@ BOOLEAN RemoteCall(HANDLE pid, PVOID ShellCode, ULONG shellcodeSize)
 					0x5D, 															//
 					0x5B, 															//
 					0x5A,															//
-					0x59, 															//pop  rcx   没有pop rcx 在下面当测试返回值
+					0x59, 															//pop  rcx   
 					0x48, 0xB8, 0x89, 0x67, 0x45, 0x23, 0x01, 0x00, 0x00, 0x00, 	//  mov  rax,(BaseAddr + 0x500)  
-					0x48, 0xC7, 0x00, 0x01, 0x00, 0x00, 0x00, 0x58, 				//  mov  qword ptr ds:[rax],0x0000000000000001  
-				//	0x58, //自己加的 pop rax 这里加了exe会卡死
+					0x48, 0xC7, 0x00, 0x01, 0x00, 0x00, 0x00,  				        //  mov  qword ptr ds:[rax],0x0000000000000001  
+					0x58,                                                           // pop rax 
 					0xFF, 0x25, 0x00, 0x00, 0x00, 0x00,                             //   jmp  回去    
 					0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,					//
 				};

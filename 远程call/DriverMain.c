@@ -20,22 +20,36 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg)
 	//ULONG_PTR moudleBase = GetModuleR3(1332, "kernel32.dll", NULL);
 	
 	
-	HANDLE pid = 10600;
+	HANDLE pid = 7640;
+	//x64
 	char code[] =
 	{  
-		             0x31, 0xC9,                                             //xor rcx, rcx
-		             0x31, 0xD2,                                             //xor rdx, rdx
-		             0x4D, 0x31, 0xC0,                                              // xor r8, r8
-		             0x4D, 0x31, 0xC9,                                              //xor r9, r9
+		             0x31, 0xC9,                                                      //xor rcx, rcx
+		             0x31, 0xD2,                                                     //xor rdx, rdx
+		             0x4D, 0x31, 0xC0,                                               // xor r8, r8
+		             0x4D, 0x31, 0xC9,                                               //xor r9, r9
 		             0x48, 0xB8, 0x88, 0x77, 0x66, 0x55, 0x44, 0x33, 0x22, 0x11,     // mov rax, 0x1122334455667788
-		             0x48, 0x81, 0xEC, 0xA8, 0x00, 0x00, 0x00,                       //sub rsp, 0xA8  这里写a0会没效果 卸载时还会蓝屏
+		             0x48, 0x81, 0xEC, 0xA8, 0x00, 0x00, 0x00,                       //sub rsp, 0xA8  这里写a0会没效果 卸载时还会蓝屏 应为栈要对齐 下面还多了一个call相当于push 8  所以上是a8而不是a0
 		             0xFF, 0xD0,                                                      //call rax
 		             0x48, 0x81, 0xC4, 0xA8, 0x00, 0x00, 0x00,                        //add rsp, 0xA8
 		             0xC3 
 	};                                                          //ret
-
 	*(PULONG64)&code[12] = 0x7FFC4D3EA9D0;    //    MessageBoxA
-	                          
+	 
+	//x32
+	//char code[] =
+	//{  
+ //     0x6A , 0x00 ,
+	//  0x6A , 0x00 ,
+	//  0x6A , 0x00 ,
+	//  0x6A , 0x00 ,   
+	//  0x83, 0xEC, 0x44,
+	//  0xFF , 0x15 , 0x40 , 0x20 , 0x55 , 0x00,
+	//  0x83, 0xC4, 0x44
+	//};                                                          //ret
+	//*(PULONG64)&code[10] = 0x740780B0;    //    MessageBoxA
+	
+
 
 	RemoteCall(pid, code,sizeof(code));
 
