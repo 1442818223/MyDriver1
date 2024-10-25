@@ -165,6 +165,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "获取messageboxa地址", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hide测试", "Hide测试\Hide测试.vcxproj", "{FBFD5F6D-E0E0-4C50-8B9C-0877B12B153B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "加载驱动", "加载驱动\加载驱动.vcxproj", "{33402491-32FA-46CE-A015-EAF60399F90D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -1399,6 +1401,18 @@ Global
 		{FBFD5F6D-E0E0-4C50-8B9C-0877B12B153B}.Release|x86.ActiveCfg = Release|x64
 		{FBFD5F6D-E0E0-4C50-8B9C-0877B12B153B}.Release|x86.Build.0 = Release|x64
 		{FBFD5F6D-E0E0-4C50-8B9C-0877B12B153B}.Release|x86.Deploy.0 = Release|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Debug|ARM64.ActiveCfg = Debug|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Debug|ARM64.Build.0 = Debug|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Debug|x64.ActiveCfg = Debug|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Debug|x64.Build.0 = Debug|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Debug|x86.ActiveCfg = Debug|Win32
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Debug|x86.Build.0 = Debug|Win32
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|ARM64.ActiveCfg = Release|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|ARM64.Build.0 = Release|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|x64.ActiveCfg = Release|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|x64.Build.0 = Release|x64
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|x86.ActiveCfg = Release|Win32
+		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
