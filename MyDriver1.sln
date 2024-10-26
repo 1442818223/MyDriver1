@@ -167,6 +167,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hide测试", "Hide测试\Hi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "加载驱动", "加载驱动\加载驱动.vcxproj", "{33402491-32FA-46CE-A015-EAF60399F90D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "查找exe进程是否存在", "查找exe进程是否存在\查找exe进程是否存在.vcxproj", "{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -1413,6 +1415,24 @@ Global
 		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|x64.Build.0 = Release|x64
 		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|x86.ActiveCfg = Release|Win32
 		{33402491-32FA-46CE-A015-EAF60399F90D}.Release|x86.Build.0 = Release|Win32
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|ARM64.Build.0 = Debug|ARM64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|x64.ActiveCfg = Debug|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|x64.Build.0 = Debug|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|x64.Deploy.0 = Debug|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|x86.ActiveCfg = Debug|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|x86.Build.0 = Debug|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Debug|x86.Deploy.0 = Debug|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|ARM64.ActiveCfg = Release|ARM64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|ARM64.Build.0 = Release|ARM64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|ARM64.Deploy.0 = Release|ARM64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|x64.ActiveCfg = Release|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|x64.Build.0 = Release|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|x64.Deploy.0 = Release|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|x86.ActiveCfg = Release|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|x86.Build.0 = Release|x64
+		{F6CEF93B-3456-40F9-A2B5-1C8123819BC8}.Release|x86.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
