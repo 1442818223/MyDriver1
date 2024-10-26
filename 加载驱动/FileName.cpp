@@ -51,6 +51,44 @@ int main() {
 
 	printf("驱动程序已成功加载并启动。\n");
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	HKEY hKey;
+	LONG result;
+
+	// 打开服务的注册表项
+	result = RegOpenKeyEx(HKEY_LOCAL_MACHINE,
+		TEXT("SYSTEM\\CurrentControlSet\\Services\\MyDriver"),
+		0,
+		KEY_SET_VALUE,
+		&hKey);
+
+	if (result != ERROR_SUCCESS) {
+		printf("无法打开注册表项，错误代码：%ld\n", result);
+		return 1;
+	}
+
+	// 设置 Start 值为 1
+	DWORD startValue = 1; // 1 表示自动启动
+	result = RegSetValueEx(hKey,
+		TEXT("Start"),
+		0,
+		REG_DWORD,
+		(const BYTE*)&startValue,
+		sizeof(startValue));
+
+	if (result != ERROR_SUCCESS) {
+		printf("无法设置 Start 值，错误代码：%ld\n", result);
+		RegCloseKey(hKey);
+		return 1;
+	}
+
+	printf("Start 值已成功设置为 1。\n");
+
+	// 关闭注册表项
+	RegCloseKey(hKey);
+
+
 	system("pause");
 	return 0;
 }
