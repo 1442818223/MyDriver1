@@ -16,7 +16,7 @@ ULONG_PTR GetModuleX86(PEPROCESS Process, PPEB32 peb32, PUNICODE_STRING ModuleNa
 		RtlInitUnicodeString(&uBaseName, baseDllName);
 
 		if (RtlCompareUnicodeString(&uBaseName, ModuleName, TRUE) == 0) {
-			DbgPrintEx(DPFLTR_IHVDRIVER_ID, DPFLTR_INFO_LEVEL, "Base: %p, Size: %llu\n", plistNext->DllBase, plistNext->SizeOfImage);
+			DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "Base: %p, Size: %llu\n", plistNext->DllBase, plistNext->SizeOfImage);
 			Module =plistNext->DllBase;
 			if (SizeImage)  *SizeImage = plistNext->SizeOfImage;
 			break;

@@ -65,7 +65,7 @@ NTSTATUS MyNtOpenProcess(
     PCLIENT_ID ClientId
 ) {
     PNTOPENPROCESS tempCall = (PNTOPENPROCESS)JmpBridgePtr;
-<<<<<<< HEAD:27HOOK/main.cc
+
 
     if (ClientId->UniqueProcess == (HANDLE)11304) {
 
@@ -73,14 +73,7 @@ NTSTATUS MyNtOpenProcess(
 
             return STATUS_UNSUCCESSFUL;
         }
-=======
-<<<<<<< HEAD
-    if (ClientId->UniqueProcess == (HANDLE)11304) {
-=======
-    if (ClientId->UniqueProcess == (HANDLE)11772) {
->>>>>>> a87bc83018d3644a35b1069f5518e42006247a80
-        return STATUS_UNSUCCESSFUL;
->>>>>>> e7949905f0b76f614f9e2bdbc3b6a8024134ce6c:27HOOK/main.cpp
+
     }
     return tempCall(ProcessHandle, DesiredAccess, ObjectAttributes, ClientId);
 }

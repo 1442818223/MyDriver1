@@ -116,7 +116,7 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 
 	while (1)
 	{
-		if (WaitForProcess("dwadawdd dwdwd.exe"))
+		if (WaitForProcess("dwm.exe"))
 			//	if (WaitForProcess("Bandizip.exe"))
 		{
 
