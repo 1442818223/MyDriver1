@@ -54,7 +54,7 @@ BOOLEAN WaitForProcess(CHAR* ProcessName)
 			status = SeLocateProcessImageName(eproc, &processNameString);
 
 			if (NT_SUCCESS(status) && processNameString->Length > 0)
-			{
+			{//指向 str 中最后一个匹配字符 \ 的指针。如果未找到该字符，则返回 NULL。
 				WCHAR* fileName = wcsrchr(processNameString->Buffer, L'\\');
 				if (fileName)
 				{
