@@ -1,4 +1,5 @@
 #include "tools.h"
+#include "strct.h"
 
 //PEPROCESS FindProcessByName(PWCH name)
 //{
@@ -142,7 +143,77 @@ PEPROCESS FindProcessByName(CHAR* ProcessName) {
 	return foundProcess;
 }
 
+ULONG FatchPid(CHAR* ProcessName)
+{
+	ULONG foundPid = 0; // 如果没有找到进程，返回 0
+	ULONG i = 0;
+	PEPROCESS eproc = NULL;
 
+	// 转换 CHAR* 到 WCHAR*
+	WCHAR* wideProcessName = ConvertToWideChar(ProcessName);
+	if (wideProcessName == NULL)
+	{
+		return 0; // 内存分配失败
+	}
+
+	UNICODE_STRING targetProcessName;
+	RtlInitUnicodeString(&targetProcessName, wideProcessName);
+
+	for (i = 4; i < 100000000; i += 4)
+	{
+		NTSTATUS status = PsLookupProcessByProcessId((HANDLE)i, &eproc);
+		if (NT_SUCCESS(status) && eproc != NULL)
+		{
+			PUNICODE_STRING processNameString = NULL;
+			status = SeLocateProcessImageName(eproc, &processNameString);
+
+			if (NT_SUCCESS(status) && processNameString->Length > 0)
+			{
+				// 查找文件名中最后一个 '\\' 字符
+				WCHAR* fileName = wcsrchr(processNameString->Buffer, L'\\');
+				if (fileName)
+				{
+					fileName++; // 跳过'\'字符
+				}
+				else
+				{
+					fileName = processNameString->Buffer;
+				}
+
+				DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "[db+] 当前进程名: %ws\n", fileName);
+
+				UNICODE_STRING currentProcessName;
+				RtlInitUnicodeString(&currentProcessName, fileName);
+
+				// 使用 RtlEqualUnicodeString 进行比较
+				if (RtlEqualUnicodeString(&currentProcessName, &targetProcessName, TRUE)) // TRUE 表示不区分大小写
+				{
+					foundPid = i; // 返回找到的 PID
+					ExFreePoolWithTag(processNameString, 0);
+					ObDereferenceObject(eproc);
+					break;  // 找到进程后退出循环
+				}
+
+				ExFreePoolWithTag(processNameString, 0);
+			}
+
+			ObDereferenceObject(eproc);
+		}
+	}
+
+	ExFreePoolWithTag(wideProcessName, 0);
+
+	if (foundPid != 0)
+	{
+		DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "[db+] 找到进程: %ws (PID: %lu)\n", wideProcessName, foundPid);
+	}
+	else
+	{
+		DbgPrintEx(DPFLTR_IHVDRIVER_ID, 0, "[db+] 未找到进程: %s\n", ProcessName);
+	}
+
+	return foundPid; // 返回进程 PID
+}
 
 
 
@@ -174,3 +245,5 @@ MODE SetPreviousMode(PETHREAD Thread, MODE Mode)
 
 	return J_Mode;
 }
+
+

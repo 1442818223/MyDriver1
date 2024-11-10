@@ -3,6 +3,8 @@
 #include<ntddk.h>
 
 
+
+
 NTSTATUS MmCopyVirtualMemory(
 	IN PEPROCESS FromProcess,
 	IN CONST VOID* FromAddress,
@@ -12,3 +14,4 @@ NTSTATUS MmCopyVirtualMemory(
 	IN KPROCESSOR_MODE PreviousMode,
 	OUT PSIZE_T NumberOfBytesCopied
 );
+
