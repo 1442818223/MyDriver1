@@ -173,6 +173,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "测试驱动项目是否正
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "替换CR3读写", "替换CR3读写\替换CR3读写.vcxproj", "{1305923B-8E96-4033-ADC1-3745A2D168B2}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "强删正在运行中的exe文件", "强删正在运行中的exe文件\强删正在运行中的exe文件.vcxproj", "{8F2D98AA-6BF7-4A61-8297-319C27370625}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -1473,6 +1475,24 @@ Global
 		{1305923B-8E96-4033-ADC1-3745A2D168B2}.Release|x86.ActiveCfg = Release|x64
 		{1305923B-8E96-4033-ADC1-3745A2D168B2}.Release|x86.Build.0 = Release|x64
 		{1305923B-8E96-4033-ADC1-3745A2D168B2}.Release|x86.Deploy.0 = Release|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|ARM64.Build.0 = Debug|ARM64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|x64.ActiveCfg = Debug|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|x64.Build.0 = Debug|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|x64.Deploy.0 = Debug|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|x86.ActiveCfg = Debug|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|x86.Build.0 = Debug|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Debug|x86.Deploy.0 = Debug|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|ARM64.ActiveCfg = Release|ARM64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|ARM64.Build.0 = Release|ARM64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|ARM64.Deploy.0 = Release|ARM64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x64.ActiveCfg = Release|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x64.Build.0 = Release|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x64.Deploy.0 = Release|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x86.ActiveCfg = Release|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x86.Build.0 = Release|x64
+		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x86.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
