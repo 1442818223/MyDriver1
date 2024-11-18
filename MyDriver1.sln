@@ -175,6 +175,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "替换CR3读写", "替换CR
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "强删正在运行中的exe文件", "强删正在运行中的exe文件\强删正在运行中的exe文件.vcxproj", "{8F2D98AA-6BF7-4A61-8297-319C27370625}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vad隐藏内存", "Vad隐藏内存\Vad隐藏内存.vcxproj", "{E279B6C6-CE41-414A-9AE9-81EAF58E587D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -1493,6 +1495,24 @@ Global
 		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x86.ActiveCfg = Release|x64
 		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x86.Build.0 = Release|x64
 		{8F2D98AA-6BF7-4A61-8297-319C27370625}.Release|x86.Deploy.0 = Release|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|ARM64.Build.0 = Debug|ARM64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|x64.ActiveCfg = Debug|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|x64.Build.0 = Debug|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|x64.Deploy.0 = Debug|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|x86.ActiveCfg = Debug|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|x86.Build.0 = Debug|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Debug|x86.Deploy.0 = Debug|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|ARM64.ActiveCfg = Release|ARM64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|ARM64.Build.0 = Release|ARM64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|ARM64.Deploy.0 = Release|ARM64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x64.ActiveCfg = Release|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x64.Build.0 = Release|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x64.Deploy.0 = Release|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x86.ActiveCfg = Release|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x86.Build.0 = Release|x64
+		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x86.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
