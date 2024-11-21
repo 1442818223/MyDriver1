@@ -1,5 +1,5 @@
-#include <ntddk.h>
 #include <Ntifs.h>
+#include <ntddk.h>
 
 #define FILE_PATH L"\\??\\C:\\1.txt"
 

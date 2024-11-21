@@ -177,6 +177,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "强删正在运行中的exe
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vad隐藏内存", "Vad隐藏内存\Vad隐藏内存.vcxproj", "{E279B6C6-CE41-414A-9AE9-81EAF58E587D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "特征码搜索", "特征码搜索\特征码搜索.vcxproj", "{0A695174-817C-4C7B-921B-A8196CDACB35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -1513,6 +1515,18 @@ Global
 		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x86.ActiveCfg = Release|x64
 		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x86.Build.0 = Release|x64
 		{E279B6C6-CE41-414A-9AE9-81EAF58E587D}.Release|x86.Deploy.0 = Release|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Debug|ARM64.ActiveCfg = Debug|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Debug|ARM64.Build.0 = Debug|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Debug|x64.ActiveCfg = Debug|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Debug|x64.Build.0 = Debug|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Debug|x86.ActiveCfg = Debug|Win32
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Debug|x86.Build.0 = Debug|Win32
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Release|ARM64.ActiveCfg = Release|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Release|ARM64.Build.0 = Release|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Release|x64.ActiveCfg = Release|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Release|x64.Build.0 = Release|x64
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Release|x86.ActiveCfg = Release|Win32
+		{0A695174-817C-4C7B-921B-A8196CDACB35}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
