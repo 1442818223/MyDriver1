@@ -383,7 +383,7 @@ BOOLEAN RemoteCall(HANDLE pid, PVOID ShellCode, ULONG shellcodeSize)
 					0x41, 0x55, 													//
 					0x41, 0x56, 													//
 					0x41, 0x57, 													//
-					0x48, 0xB8, 0x99, 0x89, 0x67, 0x45, 0x23, 0x01, 0x00,0x00, 		// mov  rax,shellcode位置
+					0x48, 0xB8, 0x99, 0x89, 0x67, 0x45, 0x23, 0x01, 0x00,0x00, 		// mov  rax,三环shellcode位置
 					0x48, 0x81, 0xEC, 0xA0, 0x00, 0x00, 0x00, 						// sub  rsp,0x00000000000000A0 
 					0xFF, 0xD0, 													// call  rax  
 					0x48, 0x81, 0xC4, 0xA0, 0x00, 0x00, 0x00, 						//add  rsp,0x00000000000000A0      //Rsp对齐16字节(规定) 
@@ -411,7 +411,8 @@ BOOLEAN RemoteCall(HANDLE pid, PVOID ShellCode, ULONG shellcodeSize)
 				
 				ULONG64 initStackAddr = *(PULONG64)((PUCHAR)pThread + 0x28);//_KTHREAD的Initialstack 栈底部
 				PKTRAP_FRAME ptrap = (PKTRAP_FRAME)(initStackAddr - sizeof(KTRAP_FRAME)); //栈顶
-				*(PULONG64)&bufcode[25] = (ULONG64)ms;//shellcode的位置
+
+				*(PULONG64)&bufcode[25] = (ULONG64)ms;//三环shellcode的位置
 				*(PULONG64)&bufcode[73] = (ULONG64)BaseAddr + 0x500; //往BaseAddr + 0x500里面放了个1(测试验证)
 				*(PULONG64)&bufcode[95] = ptrap->Rip;//跳进要注入的线程rip  (rip改回去,复原)
 				
