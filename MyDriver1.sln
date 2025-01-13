@@ -185,6 +185,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3环API反截图", "3环API
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "求得系统调用号", "求得系统调用号\求得系统调用号.vcxproj", "{47C9C236-170F-4A76-8AAA-D5FB956D39CC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "进程保护定位", "进程保护定位\进程保护定位.vcxproj", "{6F4FE477-C650-409B-BA8F-FED75DD783CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -1575,6 +1577,24 @@ Global
 		{47C9C236-170F-4A76-8AAA-D5FB956D39CC}.Release|x86.ActiveCfg = Release|x64
 		{47C9C236-170F-4A76-8AAA-D5FB956D39CC}.Release|x86.Build.0 = Release|x64
 		{47C9C236-170F-4A76-8AAA-D5FB956D39CC}.Release|x86.Deploy.0 = Release|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|ARM64.Build.0 = Debug|ARM64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|x64.ActiveCfg = Debug|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|x64.Build.0 = Debug|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|x64.Deploy.0 = Debug|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|x86.ActiveCfg = Debug|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|x86.Build.0 = Debug|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Debug|x86.Deploy.0 = Debug|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|ARM64.ActiveCfg = Release|ARM64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|ARM64.Build.0 = Release|ARM64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|ARM64.Deploy.0 = Release|ARM64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|x64.ActiveCfg = Release|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|x64.Build.0 = Release|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|x64.Deploy.0 = Release|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|x86.ActiveCfg = Release|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|x86.Build.0 = Release|x64
+		{6F4FE477-C650-409B-BA8F-FED75DD783CF}.Release|x86.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

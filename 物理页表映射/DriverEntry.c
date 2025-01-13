@@ -27,6 +27,9 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg)
 
 	if (!NT_SUCCESS(status))
 	{
+
+		DbgPrintEx(77, 0, "ZwOpenSection失败\n");
+
 		return status;
 	}
 
@@ -40,6 +43,7 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg)
 
 	if (!NT_SUCCESS(status))
 	{
+		DbgPrintEx(77, 0, "ObReferenceObjectByHandle失败\n");
 		return status;
 	}
 
@@ -50,7 +54,9 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg)
 		0, PAGE_SIZE, &lage, &sizeView, ViewUnmap, MEM_TOP_DOWN, PAGE_READWRITE);
 
 
-	//ZwUnmapViewOfSection(NtCurrentProcess(), base);
+	DbgPrintEx(77, 0, "映射出来的base的地址为%x\n",base);
+
+	ZwUnmapViewOfSection(NtCurrentProcess(), base);
 
 
 	ZwClose(hMemory);
