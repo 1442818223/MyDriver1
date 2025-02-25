@@ -130,6 +130,9 @@ NTSTATUS DriverEntry(PDRIVER_OBJECT pDriver, PUNICODE_STRING pReg)
 
 
 	if (NT_SUCCESS(status) && eprocess != NULL) {
+		*(PUCHAR)((PUCHAR)eprocess + mmm ) = 0;
+		*(PUCHAR)((PUCHAR)eprocess + mmm+1 ) = 0;
+
 		*(PUCHAR)((PUCHAR)eprocess + mmm + 2) = 0; //0x72是锁住  0是解除
 		DbgPrintEx(77, 0, " Process modified successfully\n");
 		ObDereferenceObject(eprocess);  // 确保释放对象引用
